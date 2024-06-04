@@ -1,0 +1,93 @@
+header {
+    background-color: #421807;
+    height: 130px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+header img {
+    width: 15%;
+    height: auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+
+}
+
+.color-box {
+    background-color: #889C4E;
+    padding: 0px;
+}
+
+.color-box,
+.row {
+    overflow-x: hidden; /* Asegura que los elementos no sobrepasen el ancho de la pantalla */
+}
+
+.reduced-size {
+    margin-top: 90px;
+    margin-left: 20px; /* Reduciendo el margen izquierdo */
+    max-width: 70%;
+    height: auto;
+}
+
+.color-box {
+    position: relative;
+}
+.color-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, #889C4E, transparent);
+    pointer-events: none;
+}
+
+.col {
+    position: relative;
+}
+.centered-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.centered-img img {
+    margin-top: 50px;
+    width: 40%;
+    max-width: 100%; /* Asegurando que las imágenes no se desborden */
+
+}
+
+.btn-custom {
+    background-color: #AA2C1D;
+    border-radius: 20px;
+    border: none;
+    padding: 20px 30px;
+    transition: background-color 0.3s ease;
+    max-width: 15%;
+    margin-top: 80px;
+}
+
+.btn-custom img {
+    max-width: 100%;
+}
+
+.btn-custom:hover {
+    background-color: #819b32;
+}
+
+footer {
+    background-color: #421807;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 100px;
+
+}

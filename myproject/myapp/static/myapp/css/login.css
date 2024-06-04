@@ -1,0 +1,73 @@
+.background-container {
+    background-color: #889C4E;
+    padding: 20px;
+    border-radius: 20px;
+    width: 500px;
+    margin: 30px auto 0;
+    margin-top: 60px;
+    position: relative;
+}
+
+input {
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    width: calc(100%);
+    padding-right: 40px;
+}
+
+.show-password-icon {
+    position: absolute;
+    right: 40px;
+    top: 77%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #32381e;
+}
+
+.show-password-icon:hover {
+    color: #889C4E;
+}
+
+header {
+    background-color: #421807;
+    height: 130px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+header img {
+    width: 15%;
+    height: auto;
+}
+
+body {
+    margin: 0; 
+    padding: 0; 
+}
+
+footer {
+    background-color: #421807;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 100px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn-custom {
+    background-color: #889C4E;
+    border: none;
+    width: 10%;
+}
+
+.btn-custom:hover {
+    background-color: #535e32;
+}

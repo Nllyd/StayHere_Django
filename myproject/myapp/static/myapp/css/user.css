@@ -1,0 +1,140 @@
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #EAEAEA; /* Cambiar el color de fondo del body */
+    }
+
+    header {
+        background-color: #421807;
+        height: 130px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header img {
+        width: 15%;
+        height: auto;
+    }
+
+    footer {
+        background-color: #421807;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        margin-top: 100px;
+    }
+
+    .container {
+        display: flex;
+        align-items: left;
+        justify-content: left;
+        position: relative;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px; 
+        max-width: 800px; 
+        height: 180px; 
+        margin-top: 50px; 
+        left: calc(100px);
+    }
+
+    .circle {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: #ffcc00;
+        position: absolute;
+        left: calc(-100px - 150px);
+        top: calc(50% - 100px);
+        z-index: -1;
+        background-size: cover;
+        background-position: center;
+    }
+
+    #upload-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        left: calc(-100px - 50px);
+        top: calc(103% - 100px);
+        font-size: 1rem;
+        color: #000000;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        z-index: 1;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container p {
+        margin-left: 30px;
+    }
+
+    .container p:first-child {
+        font-size: 25px;
+    }
+
+
+    #file-upload {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .section-title {
+        margin-left: 100px;
+        margin-top: 30px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .opinion-box {
+        margin-left: 100px;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        width: 350px;
+    }
+
+    .opinion-text {
+        font-size: 16px;
+        margin-right: 10px;
+        display: inline;
+        margin: 0;
+    }
+
+    .star-icon {
+        font-size: 1.5rem;
+        color: gold;
+    }
+
+    /* Estilo para el slider */
+    .slider-container {
+        overflow-x: hidden; /* Oculta la barra de desplazamiento */
+        white-space: nowrap;
+        cursor: grab; /* Cambia el cursor al hacer clic y arrastrar */
+    }
+
+    .slider-container:active {
+        cursor: grabbing; /* Cambia el cursor durante el arrastre */
+    }
+
+    .opinion-box {
+        flex: 0 0 auto; /* Evita que los comentarios se ajusten */
+        margin-right: 20px; /* Espacio entre comentarios */
+    }
+    

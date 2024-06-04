@@ -1,0 +1,214 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Cambiar la fuente del texto */
+}
+
+p {
+    font-weight: bold; /* Texto en negrita por defecto */
+}
+
+.circle {
+    width: 80px; /* Cambia el tamaño del círculo */
+    height: 80px; /* Cambia el tamaño del círculo */
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.info p {
+    font-weight: normal; /* Quita la negrita para estos elementos p */
+}
+
+.info {
+    width: calc(100% - 100px); /* Calcula el ancho de la columna de texto */
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Espaciado entre filas */
+}
+
+/* Header */
+header {
+    background-color: #421807;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    width: 15%;
+    height: auto;
+}
+
+/* Footer */
+footer {
+    background-color: #421807;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 100px;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+/* Sección del arrendador y del alojamiento */
+.arrendador-section {
+    background-color: #333; /* Fondo gris oscuro */
+    padding-top: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    color: white; /* Color del texto en blanco */
+    margin-bottom: 20px; /* Espaciado inferior para separar del siguiente contenido */
+}
+
+.alojamiento-section {
+    background-color: #333; /* Fondo gris oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+    color: white; /* Color del texto en blanco */
+    margin-bottom: 20px; /* Espaciado inferior para separar del siguiente contenido */
+    padding: 20px;
+    width: 1200px;
+    margin-left: -11px;
+}
+
+.arrendador-section p {
+    color: white; /* Color del texto en blanco */
+}
+
+.arrendador-title {
+    margin-top: 30px; /* Margen superior de 30 píxeles */
+}
+
+.map-container {
+    width: 100%;
+    height: 500px; /* Ajusta la altura del mapa según lo necesites */
+    border-radius: 20px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%; /* El iframe debe ocupar todo el espacio del contenedor */
+    border: 0; /* Elimina el borde del iframe */
+}
+
+.slider-container {
+    width: 100%;
+    height: auto; /* Ajusta la altura del slider según lo necesites */
+    border-radius: 20px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+
+.slider-container img {
+    width: 600px;
+    height: 300px;
+    object-fit: cover;
+    margin-right: 10px; /* Agrega un margen derecho de 20px entre las imágenes */
+    background-color: #ccc;
+    cursor: grab;
+}
+
+.slider-container img:last-child {
+    margin-right: 0; /* Quita el margen derecho de la última imagen para evitar un espacio adicional */
+}
+
+.slider-container img:active {
+    cursor: grabbing;
+}
+
+/* Estilos para el slider */
+.carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Altura de los rectángulos */
+}
+
+/* Enlaces de navegación del slider */
+.slick-prev, .slick-next {
+    color: #fff;
+    font-size: 1.5em;
+    z-index: 1;
+}
+
+.precio-box {
+    background-color: white;
+    padding: 10px;
+    padding-top: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    color: black;
+    height: 60px;
+    width: 280px;
+}
+
+.precio-box p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.opinion-box {
+    margin-left: 100px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    width: 350px;
+}
+
+.opinion-text {
+    font-size: 16px;
+    margin-right: 10px;
+    display: inline;
+    margin: 0;
+    font-weight: normal; /* Elimina la negrita */
+    color: black; /* Color de texto más claro */
+}
+
+.star-icon {
+    font-size: 1.5rem;
+    color: gold;
+}
+
+.opinion-info {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.opinion-text {
+    margin-right: 5px; /* Ajusta el espacio entre el número y la estrella */
+    font-weight: normal; /* Elimina la negrita si no la deseas */
+}
+
+.star-icon {
+    font-size: 1.5rem;
+    color: gold;
+}
+
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    header img {
+        width: 30%;
+    }
+}
+
+/* Ajustes para tablet */
+@media (min-width: 768px) and (max-width: 992px) {
+    header img {
+        width: 20%;
+    }
+}

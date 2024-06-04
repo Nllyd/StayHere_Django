@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/css/habitaciones.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img id="header-image" src="{% static 'myapp/images/StayPandaHere.png' %}" alt="">
+    </header>
+    <div class="container">
+        <p class="arrendador-title">Información del Arrendador</p> <!-- Párrafo movido fuera del rectángulo gris -->
+        <div class="row arrendador-section"> <!-- Clase añadida -->
+            <div class="col">
+                <div class="row">
+                    <div class="col-auto"> <!-- Columna para el círculo -->
+                        <div class="circle"></div>
+                    </div>
+                    <div class="col info"> <!-- Columna para el texto -->
+                        <p>Nombre:</p>
+                        <p>Edad</p>
+                        <p>Número:</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <p>Información del Alojamiento</p>
+        </div>
+        <div class="alojamiento-section"> <!-- Recuadro gris oscuro -->
+            <div class="row">
+                <div class="col">
+                    <p>Información del Alojamiento</p>
+                </div>
+            </div>
+            <div id="container" class="row">
+                <div class="col">
+                    <p>Ubicación</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="map-container">
+                        <!-- Mapa de Google Maps Embed API -->
+                        <!-- LA UBICACION QUE SE MUESTRA EN EL MAPA ES UN SIMPLE EJEMPLO
+                             HAY QUE BUSCAR LA FORMA DE PODER SELECCIONAR UNA UBICACION
+                             EN ESPECIFICO PARA CADA HABITACION -->
+                        <iframe id="mapa" width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=-12.0442794204298,-76.95116391076502&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <p>Imágenes del alojamiento</p>
+                    <div class="slider-container">
+                        <div class="image-container"><img src="{% static 'myapp/images/image1.jpg' %}" class="img-fluid" alt="Image 1"></div>
+                        <div class="image-container"><img src="{% static 'myapp/images/image2.jpg' %}" class="img-fluid" alt="Image 2"></div>
+                        <div class="image-container"><img src="{% static 'myapp/images/image3.jpg' %}" class="img-fluid" alt="Image 3"></div>
+                        <div class="image-container"><img src="{% static 'myapp/images/image4.jpg' %}" class="img-fluid" alt="Image 4"></div>
+                    </div>
+                    <p>Precio</p>
+                        <div class="precio-box">
+                            <p>S/.</p>
+                        </div>
+                </div>
+            </div>
+            <div class="col">
+                <p>Descripción</p>
+                <div class="col">
+                    <div class="rounded bg-white p-3" style="margin-bottom: 20px;">
+                        Contenido del recuadro blanco aquí.
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <p>Opiniones</p>
+                <div class="slider-container">
+                    <!-- Slider de opiniones -->
+                    <div class="opinion-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center;"> 
+                            <!-- Limita el tamaño a solo 20 caracteres -->
+                            <p class="opinion-text" style="margin-right: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20ch;">Opinión #1</p>
+                            <div class="opinion-info">
+                                <p class="opinion-text">4</p>
+                                <i class="bi bi-star-fill star-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Añadir más opiniones aquí -->
+                    <div class="opinion-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center;"> 
+                            <!-- Limita el tamaño a solo 20 caracteres -->
+                            <p class="opinion-text" style="margin-right: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20ch;">Opinión #2</p>
+                            <div class="opinion-info">
+                                <p class="opinion-text">3</p>
+                                <i class="bi bi-star-fill star-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Añadir más opiniones aquí -->
+                    <div class="opinion-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center;"> 
+                            <!-- Limita el tamaño a solo 20 caracteres -->
+                            <p class="opinion-text" style="margin-right: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20ch;">Opinión #3</p>
+                            <div class="opinion-info">
+                                <p class="opinion-text">5</p>
+                                <i class="bi bi-star-fill star-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Añadir más opiniones aquí -->
+                    <div class="opinion-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center;"> 
+                            <!-- Limita el tamaño a solo 20 caracteres -->
+                            <p class="opinion-text" style="margin-right: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20ch;">Opinión #4</p>
+                            <div class="opinion-info">
+                                <p class="opinion-text">2</p>
+                                <i class="bi bi-star-fill star-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- "Footer"-->
+    <footer>
+        Aquí va el contenido del footer.
+    </footer>
+
+    <script>
+        // Función para agregar el marcador de casa al mapa
+        function agregarMarcadorCasa() {
+            var mapa = document.getElementById('mapa');
+            mapa.contentWindow.postMessage('{"event":"addMarker","lat": -12.043954147829243, "lng": -76.95126047028485, "icon": "https://maps.google.com/mapfiles/kml/shapes/homegardenbusiness.png"}', '*');
+        }
+        // Llama a la función después de que el iframe se haya cargado
+        window.addEventListener('load', agregarMarcadorCasa);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzog5GoCw6p6MSs9rsT8Z8QOFlwJAIh3z9F5hXY56Bg" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-Y4oB8iI+7lUZ65VOtq5r6bPHWVJoGrhPpXT7W9+ZScQczZSC3Lsw2gFkxiByiT/R" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.slider-container').slick({
+                infinite: false,
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: true,
+                prevArrow: '<button type="button" class="slick-prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>',
+                nextArrow: '<button type="button" class="slick-next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>'
+            });
+        });
+    </script>
+</body>
+</html>
