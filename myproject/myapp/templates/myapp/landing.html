@@ -16,13 +16,21 @@
         <img id="header-image" src="{% static 'myapp/images/StayPandaHere.png' %}" alt="Logo">
         <button class="menu-toggle">&#9776;</button> <!-- Ícono de menú -->
     </header>
+
+    <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
         <button class="close-btn" id="close-button">&times;</button> <!-- Botón cerrar -->
         <ul>
-            <li><a href="#" class="semilight" style="font-size: 14px; text-align: left;">Iniciar Sesion</a></li>
-            <li><a href="#" class="semilight" style="font-size: 14px; text-align: left;">Ofrecer Habitaciones</a></li>
-            <li><a href="#" class="semilight" style="font-size: 14px; text-align: left;">Buscar Habitacion</a></li>
-            <hr style="color: rgb(255, 255, 255); width: 190px;border: 2px solid;border-radius: 10px;margin-left: 15px;margin-top: 170px;">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'nuevo' %}" class="semilight" style="font-size: 14px; text-align: left;">Ofrecer Habitaciones</a></li>
+                <li><a href="{% url 'home' %}" class="semilight" style="font-size: 14px; text-align: left;">Buscar Habitacion</a></li>
+                <li><a href="{% url 'logout' %}" class="semilight" style="font-size: 14px; text-align: left;">Cerrar Sesion</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="semilight" style="font-size: 14px; text-align: left;">Iniciar Sesion</a></li>
+                <li><a href="{% url 'alert' %}" class="semilight" style="font-size: 14px; text-align: left;">Ofrecer Habitaciones</a></li>
+                <li><a href="{% url 'home' %}" class="semilight" style="font-size: 14px; text-align: left;">Buscar Habitacion</a></li>
+            {% endif %}
+            <hr style="color: rgb(255, 255, 255); width: 190px; border: 2px solid; border-radius: 10px; margin-left: 15px; margin-top: 170px;">
             <li><a href="#" class="semilight" style="font-size: 14px; text-align: left;">¿Dudas?</a></li>
         </ul>
     </div>
@@ -120,7 +128,6 @@
     <script>
 
         // Boton de menu
-
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             var sidebar = document.getElementById("sidebar");
             sidebar.style.width = '250px';
