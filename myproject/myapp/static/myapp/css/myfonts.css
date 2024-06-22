@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'CocogoosePro-Regular';
+    src: url('fonts/Cocogoose-Pro-Regular-trial.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'CocogoosePro-Semilight';
+    src: url('fonts/Cocogoose-Pro-Semilight-trial.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'CocogoosePro-Light';
+    src: url('fonts/Cocogoose-Pro-Light-trial.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'CocogoosePro-Thin';
+    src: url('fonts/Cocogoose-Pro-Thin-trial.ttf') format('truetype');
+}
+
+/* Estilos específicos para aplicar las fuentes */
+.regular {
+    font-family: 'CocogoosePro-Regular', sans-serif;
+}
+
+.semilight {
+    font-family: 'CocogoosePro-Semilight', sans-serif;
+}
+
+.light {
+    font-family: 'CocogoosePro-Light', sans-serif;
+}
+
+.thin {
+    font-family: 'CocogoosePro-Thin', sans-serif;
+}

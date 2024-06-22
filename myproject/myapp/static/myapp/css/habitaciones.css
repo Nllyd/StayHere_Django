@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif; /* Cambiar la fuente del texto */
+    background-color: #d8d4dc;
 }
 
 p {
@@ -33,7 +34,7 @@ p {
 
 /* Header */
 header {
-    background-color: #421807;
+    background-color: #2f4a50;
     height: 130px;
     display: flex;
     justify-content: center;
@@ -47,7 +48,7 @@ header img {
 
 /* Footer */
 footer {
-    background-color: #421807;
+    background-color: #2f4a50;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -149,12 +150,6 @@ footer {
     margin-top: 10px;
     color: black;
     height: 60px;
-    width: 280px;
-}
-
-.precio-box p {
-    margin: 0;
-    font-weight: bold;
 }
 
 .opinion-box {
@@ -211,4 +206,81 @@ footer {
     header img {
         width: 20%;
     }
+}
+
+/* Styles for sidebar */
+.sidebar {
+    margin-top: 10px;
+    height: 500px;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.menu-toggle {
+    margin-top: 30px;
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.sidebar ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+}
+
+#close-button {
+    color: white; /* Color blanco para el ícono */
+    background: none; /* Eliminar fondo */
+    font-size: 30px; /* Tamaño del ícono */
+    border: none; /* Sin bordes */
+    position: absolute;
+    left: 10px; /* Alineación a la izquierda dentro del sidebar */
+    top: 10px; /* Ajustar la posición vertical */
+}
+/* Styles for sidebar */
+
+
+
+#PrimerColumna{
+    border-radius: 20px;
+    background-color: #242323;
+    margin: 10px;
+    color: whitesmoke;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#SegundaColumna{
+    background-color: #EAEAEA;
+    margin-top: 10px;
+    margin-right: 10px;
+        border-radius: 20px;
+
 }

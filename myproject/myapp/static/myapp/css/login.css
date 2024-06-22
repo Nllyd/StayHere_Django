@@ -1,8 +1,8 @@
 .background-container {
-    background-color: #889C4E;
+    background-color: #272727;
     padding: 20px;
     border-radius: 20px;
-    width: 500px;
+    width: 450px;
     margin: 30px auto 0;
     margin-top: 60px;
     position: relative;
@@ -22,17 +22,16 @@ input {
     position: absolute;
     right: 40px;
     top: 77%;
-    transform: translateY(-50%);
     cursor: pointer;
     color: #32381e;
 }
 
 .show-password-icon:hover {
-    color: #889C4E;
+    color: #00c3ff;
 }
 
 header {
-    background-color: #421807;
+    background-color: #2f4a50;
     height: 130px;
     display: flex;
     justify-content: center; 
@@ -46,11 +45,12 @@ header img {
 
 body {
     margin: 0; 
-    padding: 0; 
+    padding: 0;
+    background-color: #d8d4dc;
 }
 
 footer {
-    background-color: #421807;
+    background-color: #2f4a50;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -63,11 +63,70 @@ footer {
 }
 
 .btn-custom {
-    background-color: #889C4E;
+    background-color: #272727;
     border: none;
     width: 10%;
 }
 
 .btn-custom:hover {
-    background-color: #535e32;
+    background-color: #5a9438;
 }
+
+/* Styles for sidebar */
+.sidebar {
+    margin-top: 10px;
+    height: 500px;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.menu-toggle {
+    margin-top: 30px;
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.sidebar ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+}
+
+#close-button {
+    color: white; /* Color blanco para el ícono */
+    background: none; /* Eliminar fondo */
+    font-size: 30px; /* Tamaño del ícono */
+    border: none; /* Sin bordes */
+    position: absolute;
+    left: 10px; /* Alineación a la izquierda dentro del sidebar */
+    top: 10px; /* Ajustar la posición vertical */
+}
+/* Styles for sidebar */

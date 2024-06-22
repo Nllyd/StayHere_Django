@@ -10,14 +10,40 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
     {% load static %}
     <link rel="stylesheet" href="{% static 'myapp/css/user.css' %}">
+    <style>
+        .habitacion-box {
+            height: 550px;
+            margin: 10px;
+        }
+        .card {
+            height: 100%;
+        }
+        .photo {
+            height: 300px;
+        }
+        #no-habitaciones-container .btn {
+            margin: auto;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- Header -->
     <header>
-        <img id="header-image" src="{% static 'myapp/images/StayPandaHere.png' %}" alt="">
+        <img id="header-image" src="{% static 'myapp/images/StayPandaHere.png' %}" alt="Logo">
+        <button class="menu-toggle">&#9776;</button> <!-- Ícono de menú -->
     </header>
+    <div id="sidebar" class="sidebar">
+        <button class="close-btn" id="close-button">&times;</button> <!-- Botón cerrar -->
+        <ul>
+            <li><a href="#" class="semilight" style="font-size: 14px; text-align: left;">Iniciar Sesion</a></li>
+            <li><a href="#" class="semilight" style="font-size: 14px; text-align: left;">Ofrecer Habitaciones</a></li>
+            <li><a href="#" class="semilight" style="font-size: 14px; text-align: left;">Buscar Habitacion</a></li>
+            <hr style="color: rgb(255, 255, 255); width: 190px;border: 2px solid;border-radius: 10px;margin-left: 15px;margin-top: 170px;">
+            <li><a href="#" class="semilight" style="font-size: 14px; text-align: left;">¿Dudas?</a></li>
+        </ul>
+    </div>
 
     <!-- Contenedor de nombre, edad y número -->
     <div class="container">
@@ -34,137 +60,79 @@
         <input type="file" id="file-upload">
     </div>
 
-    <!-- Sección de Opiniones -->
-    <p class="section-title">Opiniones</p>
-    <div class="slider-container">
-        <!-- Slider de comentarios -->
-        <div class="opinion-box">
-            <div style="display: flex; justify-content: space-between; align-items: center;"> 
-                <!-- Limita el tamaño a solo 20 caracteres -->
-                <p class="opinion-text" style="margin-right: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20ch;">Me encanto!, lo recomiendo</p>
-                <div class="opinion-info">
-                    <p class="opinion-text">5</p>
-                    <i class="bi bi-star-fill star-icon"></i>
-                </div>
-                <button style="
-                background-color: rgb(192, 190, 190);
-                border: none;
-                color: black;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 10px 0;
-                cursor: pointer;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            "> Ver habitacion </button>
-            </div>
-        </div>
-
-        <!-- Añadir más comentarios aquí -->
-        <div class="opinion-box">
-            <div style="display: flex; justify-content: space-between; align-items: center;"> 
-                <!-- Limita el tamaño a solo 20 caracteres -->
-                <p class="opinion-text" style="margin-right: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20ch;">No fue lo que esperaba pero</p>
-                <div class="opinion-info">
-                    <p class="opinion-text">2</p>
-                    <i class="bi bi-star-fill star-icon"></i>
-                </div>
-                <button style="
-                background-color: rgb(192, 190, 190);
-                border: none;
-                color: black;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 10px 0;
-                cursor: pointer;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            "> Ver habitacion </button>
-            </div>
-        </div>
-
-        <!-- Añadir más comentarios aquí -->
-        <div class="opinion-box">
-            <div style="display: flex; justify-content: space-between; align-items: center;"> 
-                <!-- Limita el tamaño a solo 20 caracteres -->
-                <p class="opinion-text" style="margin-right: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20ch;">El espacio resulto comodo y el dueño f</p>
-                <div class="opinion-info">
-                    <p class="opinion-text">4</p>
-                    <i class="bi bi-star-fill star-icon"></i>
-                </div>
-                <button style="
-                background-color: rgb(192, 190, 190);
-                border: none;
-                color: black;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 10px 0;
-                cursor: pointer;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            "> Ver habitacion </button>
-            </div>
-
-            
-        </div>
-
-        <div class="opinion-box">
-            <div style="display: flex; justify-content: space-between; align-items: center;"> 
-                <!-- Limita el tamaño a solo 20 caracteres -->
-                <p class="opinion-text" style="margin-right: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 20ch;">Muy luminoso, la verdad lo recomiendo</p>
-                <div class="opinion-info">
-                    <p class="opinion-text">4</p>
-                    <i class="bi bi-star-fill star-icon"></i>
-                </div>
-                <button style="
-                background-color: rgb(192, 190, 190);
-                border: none;
-                color: black;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 10px 0;
-                cursor: pointer;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            "> Ver habitacion </button>
-            </div>
-
-            
-        </div>
-    </div>
-
     <!-- Sección de Cuartos ofrecidos -->
     <p class="section-title">Cuartos ofrecidos</p>
-
-    <!-- Recuadro -->
-    <!-- Aqui deberian de aparecer las habitacion -->
-    <div style="margin-left: 100px;">
-        <div class="col-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="photo" style="background-image: url(https://img10.naventcdn.com/avisos/111/00/66/08/31/43/360x266/354558257.jpg?isFirstImage=true); background-size: cover; background-position: center; width: 100%; height: 210px; border-radius: 10px; margin-bottom: 20px;"></div>
-                    <h5 class="card-title">Habitación para estudiantes</h5>
-                    <p class="card-text">Habitación Personal</p>
-                    <p class="card-text">Precio: S/260</p>
-                </div>
-            </div>
-        </div>
+    <div class="slider-container" id="habitaciones-container">
+        <!-- Las cards de habitaciones se generarán dinámicamente aquí -->
     </div>
-</div>
+    <div class="container text-center" id="no-habitaciones-container" style="display: none;">
+        <button class="btn btn-success" onclick="window.location.href='http://127.0.0.1:8000/nuevo/'">Publica tu primer alojamiento</button>
+    </div>
 
-    
+    <!-- La tabla para habitaciones -->
+    <div class="d-none">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Ubicación</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Condición</th>
+                    <th scope="col">Imagen</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-filtrada">
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Habitación para estudiantes</td>
+                    <td>Santa Anita</td>
+                    <td>260</td>
+                    <td>Habitación Personal</td>
+                    <td>Baño Propio</td>
+                    <td>https://img10.naventcdn.com/avisos/111/00/66/08/31/43/360x266/354558257.jpg?isFirstImage=true</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Habitación para parejas</td>
+                    <td>Santa Anita</td>
+                    <td>310</td>
+                    <td>Habitación Doble</td>
+                    <td>Petfriendly</td>
+                    <td>https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5rgLiYoJhoYikkhsE3TYZXzje6E86Cp1ybw&s</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Habitación para estudiantes</td>
+                    <td>Santa Anita</td>
+                    <td>260</td>
+                    <td>Habitación Personal</td>
+                    <td>Baño Propio</td>
+                    <td>https://img10.naventcdn.com/avisos/111/00/66/08/31/43/360x266/354558257.jpg?isFirstImage=true</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Habitación para estudiantes</td>
+                    <td>Santa Anita</td>
+                    <td>260</td>
+                    <td>Habitación Personal</td>
+                    <td>Baño Propio</td>
+                    <td>https://img10.naventcdn.com/avisos/111/00/66/08/31/43/360x266/354558257.jpg?isFirstImage=true</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Habitación para estudiantes</td>
+                    <td>Santa Anita</td>
+                    <td>260</td>
+                    <td>Habitación Personal</td>
+                    <td>Baño Propio</td>
+                    <td>https://img10.naventcdn.com/avisos/111/00/66/08/31/43/360x266/354558257.jpg?isFirstImage=true</td>
+                </tr>
+                <!-- Puedes agregar más filas según necesites -->
+            </tbody>
+        </table>
+    </div>
 
     <!-- "Footer"-->
     <footer>
@@ -176,13 +144,81 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
         $(document).ready(function(){
-            $('.slider-container').slick({
+            $('#habitaciones-container').slick({
                 infinite: false,
                 slidesToShow: 3,
                 slidesToScroll: 1,
                 swipeToSlide: true
             });
+
+            generateHabitaciones();
         });
+
+        // Boton de menu
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.style.width = '250px';
+        });
+
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.style.width = '0';
+        });
+
+        window.onclick = function(event) {
+            var sidebar = document.getElementById("sidebar");
+            if (event.target == sidebar) {
+                sidebar.style.width = '0';
+            }
+        }
+
+        // Generar dinámicamente las cards de habitaciones desde la tabla
+        function generateHabitaciones() {
+            const habitacionesContainer = document.getElementById('habitaciones-container');
+            const noHabitacionesContainer = document.getElementById('no-habitaciones-container');
+            const table = document.getElementById('tabla-filtrada');
+            const rows = table.querySelectorAll('tbody tr');
+
+            if (rows.length === 0) {
+                habitacionesContainer.style.display = 'none';
+                noHabitacionesContainer.style.display = 'block';
+            } else {
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    const nombre = cells[0].innerText;
+                    const ubicacion = cells[1].innerText;
+                    const precio = cells[2].innerText;
+                    const categoria = cells[3].innerText;
+                    const condicion = cells[4].innerText;
+                    const imagen = cells[5].innerText;
+
+                    const card = document.createElement('div');
+                    card.classList.add('habitacion-box');
+                    card.innerHTML = `
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="photo" style="background-image: url(${imagen}); background-size: cover; background-position: center; border-radius: 10px; margin-bottom: 10px;"></div>
+                                <h5 class="card-title">${nombre}</h5>
+                                <p class="card-text">${categoria}</p>
+                                <p class="card-text">Precio: S/${precio}</p>
+                                <p class="card-text">${ubicacion}</p>
+                                <p class="card-text">${condicion}</p>
+                            </div>
+                        </div>
+                    `;
+                    habitacionesContainer.appendChild(card);
+                });
+
+                // Reiniciar el slider para que tome las nuevas habitaciones
+                $('#habitaciones-container').slick('unslick'); // Destruir el slider actual
+                $('#habitaciones-container').slick({
+                    infinite: false,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    swipeToSlide: true
+                }); // Re-inicializar el slider
+            }
+        }
     </script>
 </body>
 </html>

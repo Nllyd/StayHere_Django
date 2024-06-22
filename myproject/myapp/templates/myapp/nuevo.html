@@ -7,24 +7,68 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     {% load static %}
     <link rel="stylesheet" href="{% static 'myapp/css/habitaciones.css' %}">
     <style>
-        .marker {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
         .map-container {
             position: relative;
             height: 600px;
         }
-        iframe {
+        #coords-table {
+            margin-top: 20px;
+        }
+        textarea {
+            resize: none; /* Disable manual resizing */
+            overflow: hidden; /* Hide scroll bar */
+        }
+        .form-check {
+            display: inline-block;
+            width: 230px;
+            height: 50px;
+            background-color: white;
+            border-radius: 10px;
+            margin: 5px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 50px;
+            font-size: 14px;
+            position: relative;
+            margin-left: 50px;
+        }
+        .form-check-input {
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+            margin: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid black; /* Border of the checkbox */
+            background-color: white; /* Background color of the checkbox */
+        }
+        .form-check-label {
+            display: inline-block;
             width: 100%;
             height: 100%;
+            line-height: 50px;
+            color: black;
+            margin-bottom: 0;
+        }
+        .form-check-label i {
+            margin-right: 5px;
+        }
+        .image-container img {
+            display: inline-block;
+            margin-right: 5px;
+            max-width: 100px;
+            max-height: 100px;
+        }
+        .cursor-pointer {
+            cursor: pointer;
+        }
+        .cursor-grab {
+            cursor: grab;
         }
     </style>
 </head>
@@ -34,42 +78,106 @@
         <img id="header-image" src="{% static 'myapp/images/StayPandaHere.png' %}" alt="">
     </header>
     <div class="container">
-        <form>
+        <form id="alojamiento-form">
             <div class="col" style="margin-top: 30px;">
                 <p>Información del Alojamiento</p>
             </div>
-            <div class="alojamiento-section"> <!-- Recuadro gris oscuro -->
+            <div class="alojamiento-section">
                 <div id="container" class="row">
                     <div class="col">
                         <p>Nombra tu alojamiento</p>
                         <div class="input-group mb-3">
-                            <input type="text" id="address" class="form-control" placeholder="Ingresa un nombre" aria-label="Enter name">
+                            <input type="text" id="nombre" class="form-control" placeholder="Ingresa un nombre" aria-label="Enter name" style="height: 50px;" required>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="map-container">
-                            <iframe id="map-iframe" src="https://maps.google.com/maps?q=-12.0442794204298,-76.95116391076502&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
-                            <div id="map" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></div>
+                    <div class="col-12">
+                        <!-- MAPA -->
+                        <p style="margin-top: 20px;">Ubica tu alojamiento</p>
+                        <div class="map-container cursor-pointer" id="map-container">
+                            <div id="map" style="height: 100%; width: 100%;"></div>
+                        </div>
+
+                        <p style="margin-top: 20px;">Descripción</p>
+                        <div class="col">
+                            <div class="rounded bg-white p-3" style="margin-bottom: 0; margin-top: 0;">
+                                <textarea id="descripcion" class="form-control" placeholder="Describe tu alojamiento" style="width: 100%;" rows="4" required></textarea>
+                            </div>
                         </div>
 
                         <p style="margin-top: 30px;">Agrega las imágenes de tu alojamiento</p>
                         <div class="slider-container">
-                            <input type="file" id="imageUpload" name="imageUpload" accept="image/*" onchange="displayImages(event)">
+                            <input type="file" id="imageUpload" name="imageUpload" accept="image/*" multiple required onchange="displayImages(event)">
                             <div id="imagePreviewSlider" class="mt-3"></div>
                         </div>
                         
-                        <p>Establece tu precio</p>
+                        <p style="margin-top: 30px;">Establece tu precio</p>
                         <div class="precio-box">
-                            <input type="number" class="form-control" placeholder="S/.">
+                            <input type="number" id="precio" class="form-control" placeholder="S/." required>
                         </div>
-                    </div>
-                    <div class="col-6" style="margin-top: -200px;"> <!-- Ajustado el margen superior -->
-                        <p>Descripción</p>
-                        <div class="col">
-                            <div class="rounded bg-white p-3" style="margin-bottom: 0; margin-top: 0;"> <!-- Margen inferior y superior modificados a cero -->
-                                <input type="text" class="form-control" placeholder="Describe tu alojamiento" style="height: 500px; width: 100%; white-space: normal;">
+
+                        <p style="margin-top: 30px;">Selecciona las características del alojamiento</p>
+                        <div class="d-flex flex-wrap">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Wi-Fi" id="wifidefibraoptica">
+                                <label class="form-check-label" for="wifidefibraoptica">
+                                    <i class="fas fa-wifi"></i> Wi-Fi
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Estacionamiento" id="estacionamiento">
+                                <label class="form-check-label" for="estacionamiento">
+                                    <i class="fas fa-parking"></i> Estacionamiento
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Espacio de Cocina" id="espacioparacocina">
+                                <label class="form-check-label" for="espacioparacocina">
+                                    <i class="fas fa-utensils"></i> Espacio de Cocina
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Agua caliente" id="duchadeaguacaliente">
+                                <label class="form-check-label" for="duchadeaguacaliente">
+                                    <i class="fas fa-shower"></i> Agua caliente
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Amueblado" id="amueblado">
+                                <label class="form-check-label" for="amueblado">
+                                    <i class="fas fa-couch"></i> Amueblado
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Baño Propio" id="bañopropio">
+                                <label class="form-check-label" for="bañopropio">
+                                    <i class="fas fa-bath"></i> Baño Propio
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Pet-Friendly" id="petfriendly">
+                                <label class="form-check-label" for="petfriendly">
+                                    <i class="fas fa-paw"></i> Pet-Friendly
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Zonas Comunes" id="zonascomunes">
+                                <label class="form-check-label" for="zonascomunes">
+                                    <i class="fas fa-users"></i> Zonas Comunes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Tendedero" id="tendedero">
+                                <label class="form-check-label" for="tendedero">
+                                    <i class="fas fa-ellipsis-h"></i> Tendedero
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Restaurante" id="restaurante">
+                                <label class="form-check-label" for="restaurante">
+                                    <i class="fas fa-utensils"></i> Restaurante
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -81,6 +189,25 @@
         </form>
     </div>
 
+    <!-- Coordenadas del marcador y datos del formulario -->
+    <div class="container" id="coords-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Imágenes</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Características</th>
+                    <th scope="col">Latitud</th>
+                    <th scope="col">Longitud</th>
+                </tr>
+            </thead>
+            <tbody id="coords-body">
+            </tbody>
+        </table>
+    </div>
+
     <!-- "Footer"-->
     <footer>
         Aquí va el contenido del footer.
@@ -88,6 +215,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap"></script>
     <script>
         function displayImages(event) {
             const fileInput = event.target;
@@ -123,6 +251,131 @@
                 nextArrow: '<button type="button" class="slick-next"><span class="carousel-control-next-icon" aria-hidden="true"></span>Next</span></button>'
             });
         }
+
+        let map;
+        let marker;
+        let latitude;
+        let longitude;
+
+        function initMap() {
+            // Coordenadas del centro del mapa
+            const uluru = { lat: -12.0442794204298, lng: -76.95116391076502 };
+
+            // Crear el mapa centrado en las coordenadas especificadas
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: uluru
+            });
+
+            // Añadir evento de clic para agregar marcador
+            map.addListener('click', function(event) {
+                addMarker(event.latLng);
+            });
+        }
+
+        function addMarker(location) {
+            // Eliminar el marcador existente si hay uno
+            if (marker) {
+                marker.setMap(null);
+            }
+
+            // Crear un nuevo marcador en la ubicación clickeada
+            marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+
+            // Centrar el mapa en el nuevo marcador
+            map.setCenter(location);
+
+            // Guardar las coordenadas en la tabla
+            latitude = location.lat();
+            longitude = location.lng();
+        }
+
+        // Asegúrate de que initMap está definida globalmente para que Google Maps pueda acceder a ella
+        window.initMap = initMap;
+
+        // Ajustar la altura del textarea automáticamente
+        document.getElementById('descripcion').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        // Manejar el envío del formulario
+        document.getElementById('alojamiento-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar el envío del formulario
+
+            // Recolectar los datos del formulario
+            const nombre = document.getElementById('nombre').value;
+            const descripcion = document.getElementById('descripcion').value;
+            const precio = document.getElementById('precio').value;
+            const imageUpload = document.getElementById('imageUpload');
+            const images = [];
+            if (imageUpload.files.length > 0) {
+                for (let i = 0; i < imageUpload.files.length; i++) {
+                    images.push(URL.createObjectURL(imageUpload.files[i]));
+                }
+            } else {
+                alert('Por favor, agrega al menos una imagen.');
+                return;
+            }
+
+            if (!latitude || !longitude) {
+                alert('Por favor, selecciona la ubicación en el mapa.');
+                return;
+            }
+
+            const caracteristicas = [];
+            document.querySelectorAll('.form-check-input').forEach(input => {
+                if (input.checked) {
+                    caracteristicas.push(input.value);
+                }
+            });
+
+            // Crear una nueva fila en la tabla con los datos del formulario
+            const coordsBody = document.getElementById('coords-body');
+            const newRow = coordsBody.insertRow();
+
+            const nombreCell = newRow.insertCell(0);
+            const descripcionCell = newRow.insertCell(1);
+            const imagenCell = newRow.insertCell(2);
+            const precioCell = newRow.insertCell(3);
+            const caracteristicasCell = newRow.insertCell(4);
+            const latitudCell = newRow.insertCell(5);
+            const longitudCell = newRow.insertCell(6);
+
+            nombreCell.textContent = nombre;
+            descripcionCell.textContent = descripcion;
+
+            // Añadir imágenes a la celda
+            imagenCell.innerHTML = '';
+            images.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.classList.add('image-container');
+                imagenCell.appendChild(img);
+            });
+
+            precioCell.textContent = `S/. ${precio}`;
+            caracteristicasCell.textContent = caracteristicas.join(', ');
+            latitudCell.textContent = latitude;
+            longitudCell.textContent = longitude;
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Control') {
+                document.getElementById('map-container').classList.remove('cursor-pointer');
+                document.getElementById('map-container').classList.add('cursor-grab');
+            }
+        });
+
+        document.addEventListener('keyup', function(event) {
+            if (event.key === 'Control') {
+                document.getElementById('map-container').classList.remove('cursor-grab');
+                document.getElementById('map-container').classList.add('cursor-pointer');
+            }
+        });
     </script>
 </body>
 </html>
