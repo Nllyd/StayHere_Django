@@ -18,13 +18,14 @@ def landing_view(request):
 def alert_view(request):
     return render(request, 'myapp/alert.html')
 
+def home_view(request):
+    alojamientos = Alojamiento.objects.all()
+    return render(request, 'myapp/home.html', {'alojamientos': alojamientos})
+
 @login_required
 def habitaciones_view(request):
     alojamientos = Alojamiento.objects.all()
     return render(request, 'myapp/habitaciones.html', {'alojamientos': alojamientos})
-
-def home_view(request):
-    return render(request, 'myapp/home.html')
 
 def login_view(request):
     if request.method == 'POST':

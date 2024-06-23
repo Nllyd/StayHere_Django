@@ -94,3 +94,10 @@ AUTH_USER_MODEL = 'myapp.Usuario'
 
 # Verificacion de inicio de sesion
 LOGIN_URL = '/login/' 
+
+
+# Cargo de imagenes
+# settings.py
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
