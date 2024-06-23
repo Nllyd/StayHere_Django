@@ -23,9 +23,9 @@ def home_view(request):
     return render(request, 'myapp/home.html', {'alojamientos': alojamientos})
 
 @login_required
-def habitaciones_view(request):
-    alojamientos = Alojamiento.objects.all()
-    return render(request, 'myapp/habitaciones.html', {'alojamientos': alojamientos})
+def alojamiento_detalle_view(request, alojamiento_id):
+    alojamiento = get_object_or_404(Alojamiento, id=alojamiento_id)
+    return render(request, 'myapp/habitaciones.html', {'alojamiento': alojamiento})
 
 def login_view(request):
     if request.method == 'POST':
@@ -115,8 +115,3 @@ class HabitacionesView(LoginRequiredMixin, View):
     def get(self, request):
         alojamientos = Alojamiento.objects.all()
         return render(request, 'myapp/habitaciones.html', {'alojamientos': alojamientos})
-
-@login_required
-def alojamiento_detalle_view(request, alojamiento_id):
-    alojamiento = get_object_or_404(Alojamiento, id=alojamiento_id)
-    return render(request, 'myapp/alojamiento_detalle.html', {'alojamiento': alojamiento})

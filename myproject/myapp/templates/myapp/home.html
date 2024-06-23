@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
     <link rel="stylesheet" href="{% static 'myapp/css/myfonts.css' %}">
 </head>
-<body>
+
+<body class="fade-out">
     <!-- Header -->
     <header>
         <img id="header-image" src="{% static 'myapp/images/StayPandaHere.png' %}" alt="Logo">
@@ -81,21 +82,26 @@
                 
                 <div id="cards-container" class="row">
                     {% for alojamiento in alojamientos %}
-                    <div class="col-4 card-margin">
-                        <div class="card">
-                            <div class="card-body">
-                                {% if alojamiento.imagenes.exists %}
-                                    <div class="photo" style="background-image: url('{{ alojamiento.imagenes.first.imagen.url }}'); background-size: cover; background-position: center; width: 100%; height: 210px; border-radius: 10px; margin-bottom: 20px;"></div>
-                                {% else %}
-                                <!-- IGNORAR EL ERROR --> <!-- Proximo a arreglar -->
-                                    <div class="photo" style="background-image: url('{% static 'myapp/images/default_image.jpg' %}'); background-size: cover; background-position: center; width: 100%; height: 210px; border-radius: 10px; margin-bottom: 20px;"></div>
-                                {% endif %}
-                                <h5 class="card-title">{{ alojamiento.nombre }}</h5>
-                                <p class="card-text">{{ alojamiento.descripcion }}</p>
-                                <p class="card-text">S/.{{ alojamiento.precio }}</p>
-                                <p class="card-text">{{ alojamiento.caracteristicas }}</p>
+                    <div class="col-md-4 col-6 fade-in">
+                        <a href="{% url 'alojamiento_detalle' alojamiento.id %}" style="text-decoration: none; color: inherit;">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if alojamiento.imagenes.exists %}
+                                        <div class="photo" style="background-image: url('{{ alojamiento.imagenes.first.imagen.url }}');"></div>
+                                    {% else %}
+                                        <div class="photo" style="background-image: url('{% static 'myapp/images/default_image.jpg' %}');"></div>
+                                    {% endif %}
+                                    <h5 class="card-title">{{ alojamiento.nombre|truncatechars:50 }}</h5>
+                                    <p class="card-text">{{ alojamiento.descripcion|truncatechars:100 }}</p>
+                                    <p class="card-text">S/.{{ alojamiento.precio }}</p>
+                                    <div>
+                                        {% for caracteristica in alojamiento.caracteristicas %}
+                                            <span class="characteristic-bubble">{{ caracteristica }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     {% endfor %}
                 </div> <!-- Contenedor para los cards -->
@@ -167,12 +173,42 @@
 
                     // Mostrar u ocultar el card según los filtros y búsqueda
                     if (mostrarCard) {
-                        card.closest(".col-4").show();
+                        card.closest(".col-md-4").show();
                     } else {
-                        card.closest(".col-4").hide();
+                        card.closest(".col-md-4").hide();
                     }
                 });
             }
+
+            // Añadir efecto de desvanecimiento al hacer scroll
+            const faders = document.querySelectorAll('.fade-in');
+
+            const appearOptions = {
+                threshold: 0,
+                rootMargin: "0px 0px -100px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // Añadir efecto de desvanecimiento inicial al cargar la página
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+                document.body.classList.add('fade-in');
+                document.body.classList.remove('fade-out');
+            }, 100);
         });
     </script>
 </body>

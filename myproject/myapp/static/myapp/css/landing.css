@@ -1,3 +1,4 @@
+/* landing.css */
 header {
     background-color: #2f4a50;
     height: 130px;
@@ -58,8 +59,7 @@ body {
 
 .centered-img img {
     margin-top: 50px;
-    width: 40%;
-    max-width: 100%;
+    object-fit: fill;
 }
 
 .btn-custom {
@@ -81,7 +81,7 @@ body {
 }
 
 footer {
-    background-color: #50747c;
+    background-color: #2f4a50;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -146,4 +146,25 @@ footer {
     position: absolute;
     left: 10px; /* Alineación a la izquierda dentro del sidebar */
     top: 10px; /* Ajustar la posición vertical */
+}
+
+/* Efecto de desvanecimiento */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-out {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.fade-out.hidden {
+    opacity: 0;
 }

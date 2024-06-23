@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'myapp/css/landing.css' %}">
     <link rel="stylesheet" href="{% static 'myapp/css/myfonts.css' %}">
 </head>
-<body>
+<body class="fade-out">
 
     <!-- Header -->
     <header>
@@ -36,21 +36,19 @@
     </div>
 
     <!-- Cuadro Verde -->
-    <div class="color-box">
+    <div class="color-box fade-in">
         <div class="row">
-
             <!-- Texto -->
             <div class="col-md-6">
                 <div id="landing-text-image" class="reduced-size">
-                    <p class="regular" style="color: wheat;font-size: 24px;">¿Buscas una nueva habitacion?</p>
-                    <p class="semilight" style="color: rgb(255, 255, 255);font-size: 14px;">Encuentra tu espacio perfecto para estudiar, relajarte y crecer con nuestra plataforma especializada en buscar habitaciones para estudiantes.</p>
+                    <p class="regular" style="color: wheat;font-size: 28px;">¿Buscas una nueva habitacion?</p>
+                    <p class="semilight" style="color: rgb(255, 255, 255);font-size: 20px;">Encuentra tu espacio perfecto para estudiar, relajarte y crecer con nuestra plataforma especializada en buscar habitaciones para estudiantes.</p>
                 </div>
             </div>
-
             <!-- Imagen -->
             <div class="col-md-6">
                 <div class="col position-relative">
-                    <img id="students-image" src="{% static 'myapp/images/Imagenes StayHere/EstudiantesTecsup.png' %}" alt="" style="max-width: 100%;">
+                    <img id="students-image" src="{% static 'myapp/images/Imagenes StayHere/EstudiantesTecsup.png' %}" alt="">
                     <div class="color-overlay"></div>
                 </div>
             </div>
@@ -58,14 +56,14 @@
     </div>
 
     <!-- Titulo -->
-    <div class="centered-img">
+    <div class="centered-img fade-in">
         <div id="comienza-image" style="max-width: 30%; margin-top: 80px;">
             <p class="regular" style="color: rgb(161, 59, 59); font-size: 24px; text-align: center;">Comienza a buscar tu propio espacio.</p>
         </div>
     </div>
 
     <!-- Subtitulo -->
-    <div class="centered-img">
+    <div class="centered-img fade-in">
         <div id="vive-image" style="max-width: 20%; margin-bottom: 50px;">
             <p class="semilight" style="color: rgb(51, 46, 46); font-size: 16px; text-align: center;width: 300px;">Vive según tu comodidad cerca de tu institución educativa.</p>
         </div>
@@ -73,9 +71,9 @@
 
     <div class="row">
         <!-- 1er icono -->
-        <div class="col-md-4">
+        <div class="col-md-4 fade-in">
             <div class="centered-img">
-                <img id="laptop-celular-image" src="{% static 'myapp/images/Imagenes StayHere/Laptop-Celularnuevo.png' %}" alt="" style="width: 204px; height: 158px;">
+                <img id="laptop-celular-image" style="width: 200px;height: 170px;" src="{% static 'myapp/images/Imagenes StayHere/Laptop-Celularnuevo.png' %}" alt="">
             </div>
             <div class="centered-img">
                 <p class="regular" style="color: rgb(161, 59, 59); font-size: 26px; text-align: center;margin-top: 30px;">Regístrate</p>
@@ -84,11 +82,10 @@
                 <p class="light" style="color: rgb(51, 46, 46); font-size: 16px; text-align: center;width: 250px;">Crea tu cuenta o inicia sesión y encuentra tu alojamiento adecuado, basándote en tus gustos y necesidades u ofrece tus habitaciones a los estudiantes que lo necesiten.</p>
             </div>
         </div>
-        
         <!-- 2do icono -->
-        <div class="col-md-4">
+        <div class="col-md-4 fade-in">
             <div class="centered-img">
-                <img id="chat-celular-image" src="{% static 'myapp/images/Imagenes StayHere/Chat-celular.png' %}" alt="" style="width: 132px; height: 158px;">
+                <img id="chat-celular-image" style="width: 150px;height: 170px;" src="{% static 'myapp/images/Imagenes StayHere/Chat-celular.png' %}" alt="">
             </div>
             <div class="centered-img">
                 <p class="regular" style="color: rgb(161, 59, 59); font-size: 26px; text-align: center;margin-top: 30px;">Contacta</p>
@@ -97,11 +94,10 @@
                 <p class="light" style="color: rgb(51, 46, 46); font-size: 16px; text-align: center;width: 250px;">Ponte en contacto de una forma sencilla y rápida para poder reunirse y así saber si es la habitación que estás buscando para poder vivir de forma cómoda.</p>
             </div>
         </div>
-
         <!-- 3er icono -->
-        <div class="col-md-4">
+        <div class="col-md-4 fade-in">
             <div class="centered-img">
-                <img id="habitacion-image" src="{% static 'myapp/images/Imagenes StayHere/Habitacion.png' %}" alt="" style="width: 158px; height: 158px;">
+                <img id="habitacion-image" style="width: 200px;height: 170px;" src="{% static 'myapp/images/Imagenes StayHere/Habitacion.png' %}" alt="">
             </div>
             <div class="centered-img">
                 <p class="regular" style="color: rgb(161, 59, 59); font-size: 26px; text-align: center;margin-top: 30px;">Disfruta</p>
@@ -110,14 +106,12 @@
                 <p class="light" style="color: rgb(51, 46, 46); font-size: 16px; text-align: center;width: 250px;">Disfruta de tu nuevo alojamiento a tu medida, comparte tu experiencia con los demás y recomienda el aplicativo a tus conocidos.</p>
             </div>
         </div>
-
         <!-- Buscar Habitaciones -->
-        <div class="col-md-12 text-center mt-4">
+        <div class="col-md-12 text-center mt-4 fade-in">
             <button class="btn btn-custom" id="search-button">
                 <img src="{% static 'myapp/images/Textos StayHere/BuscarHabitaciones.png' %}" alt="Buscar Habitaciones">
             </button>
         </div>
-
     </div>
 
     <footer>
@@ -126,7 +120,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-
         // Boton de menu
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             var sidebar = document.getElementById("sidebar");
@@ -146,11 +139,40 @@
         }
 
         // Botones de navegacion
-
         document.getElementById('search-button').onclick = function() {
-            window.location.href = "{% url 'home' %}";
+            document.body.classList.add('hidden');
+            setTimeout(function() {
+                window.location.href = "{% url 'home' %}";
+            }, 500);
         }
+
+        // Añadir efecto de desvanecimiento al hacer scroll
+        const faders = document.querySelectorAll('.fade-in');
+
+        const appearOptions = {
+            threshold: 0,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Efecto de desvanecimiento al cargar la página
+        window.addEventListener('load', () => {
+            document.body.classList.remove('fade-out');
+        });
     </script>
-    
 </body>
 </html>
