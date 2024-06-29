@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
     <link rel="stylesheet" href="{% static 'myapp/css/myfonts.css' %}">
 </head>
-
-<body class="fade-out">
+<body>
     <!-- Header -->
     <header>
         <img id="header-image" src="{% static 'myapp/images/StayPandaHere.png' %}" alt="Logo">
@@ -22,6 +21,7 @@
         <button class="close-btn" id="close-button">&times;</button> <!-- Botón cerrar -->
         <ul>
             {% if user.is_authenticated %}
+                <li><a href="{% url 'user' %}" class="semilight" style="font-size: 14px; text-align: left;">Mi perfil</a></li> <!-- Nuevo enlace -->
                 <li><a href="{% url 'nuevo' %}" class="semilight" style="font-size: 14px; text-align: left;">Ofrecer Habitaciones</a></li>
                 <li><a href="{% url 'home' %}" class="semilight" style="font-size: 14px; text-align: left;">Buscar Habitacion</a></li>
                 <li><a href="{% url 'logout' %}" class="semilight" style="font-size: 14px; text-align: left;">Cerrar Sesion</a></li>
@@ -44,22 +44,11 @@
                 <p><strong class="light" style="font-size: 13px; color: #4c7077;margin-top: 20px;">Categorías</strong></p>
                 <div class="checkbox-group">
                     <input type="checkbox" id="Habitación Personal" name="Habitación Personal" class="filtro">
-                    <label for="Habitación Personal" >Habitación Personal</label>
+                    <label for="Habitación Personal">Habitación Personal</label>
                 </div>
                 <div class="checkbox-group">
                     <input type="checkbox" id="Habitación Doble" name="Habitación Doble" class="filtro">
                     <label for="Habitación Doble">Habitación Doble</label>
-                </div>
-
-                <!-- Precios -->
-                <p><strong class="light" style="font-size: 13px;color: #4c7077;margin-top: 20px;">Precios</strong></p>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="preciomediobajo" name="250-300" class="filtro">
-                    <label for="preciomediobajo">S/250 - S/300</label>
-                </div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="preciomedioalto" name="300-350" class="filtro">
-                    <label for="preciomedioalto">S/300 - S/350</label>
                 </div>
 
                 <!-- Condiciones -->
@@ -71,6 +60,21 @@
                 <div class="checkbox-group">
                     <input type="checkbox" id="Baño Propio" name="Baño Propio" class="filtro">
                     <label for="Baño Propio">Baño Propio</label>
+                </div>
+
+                <!-- Precios -->
+                <p><strong class="light" style="font-size: 13px;color: #4c7077;margin-top: 20px;">Precios</strong></p>
+                <div class="range-slider">
+                    <div>
+                        <label for="minPriceRange">Min:</label>
+                        <input type="range" class="form-range" id="minPriceRange" min="250" max="1500" step="50" value="250">
+                        <span id="minPriceRangeValue">250</span>
+                    </div>
+                    <div>
+                        <label for="maxPriceRange">Max:</label>
+                        <input type="range" class="form-range" id="maxPriceRange" min="250" max="1500" step="50" value="1500">
+                        <span id="maxPriceRangeValue">1500</span>
+                    </div>
                 </div>
             </div>
             
@@ -89,15 +93,18 @@
                                     {% if alojamiento.imagenes.exists %}
                                         <div class="photo" style="background-image: url('{{ alojamiento.imagenes.first.imagen.url }}');"></div>
                                     {% else %}
-                                        <div class="photo" style="background-image: url('{% static 'myapp/images/default_image.jpg' %}');"></div>
                                     {% endif %}
-                                    <h5 class="card-title">{{ alojamiento.nombre|truncatechars:50 }}</h5>
+                                    <h5 class="card-title" style="margin-top: 10px;">{{ alojamiento.nombre|truncatechars:50 }}</h5>
                                     <p class="card-text">{{ alojamiento.descripcion|truncatechars:100 }}</p>
-                                    <p class="card-text">S/.{{ alojamiento.precio }}</p>
+                                    <p class="card-text price" style="margin-bottom: 10px;">S/.{{ alojamiento.precio }}</p>
+                                    <hr>
                                     <div>
-                                        {% for caracteristica in alojamiento.caracteristicas %}
+                                        {% for caracteristica in alojamiento.caracteristicas|slice:":3" %}
                                             <span class="characteristic-bubble">{{ caracteristica }}</span>
                                         {% endfor %}
+                                        {% if alojamiento.caracteristicas|length > 3 %}
+                                            <span class="characteristic-bubble">más...</span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -145,6 +152,12 @@
                 filtrarTabla();
             });
 
+            $("#minPriceRange, #maxPriceRange").on("input", function(){
+                $("#minPriceRangeValue").text($("#minPriceRange").val());
+                $("#maxPriceRangeValue").text($("#maxPriceRange").val());
+                filtrarTabla();
+            });
+
             function filtrarTabla() {
                 var filtros = [];
                 $(".filtro:checked").each(function(){
@@ -152,6 +165,8 @@
                 });
 
                 var busqueda = $(".form-control").val().trim().toLowerCase();
+                var minPrecio = parseFloat($("#minPriceRange").val());
+                var maxPrecio = parseFloat($("#maxPriceRange").val());
 
                 $("#cards-container .card").each(function(){
                     var card = $(this);
@@ -168,6 +183,12 @@
 
                     // Verificar si el card pasa la búsqueda por texto
                     if (busqueda !== "" && !textoCard.includes(busqueda)) {
+                        mostrarCard = false;
+                    }
+
+                    // Verificar si el card pasa el rango de precios
+                    var precio = parseFloat(card.find(".price").text().replace('S/.', ''));
+                    if (precio < minPrecio || precio > maxPrecio) {
                         mostrarCard = false;
                     }
 
@@ -203,12 +224,6 @@
                 appearOnScroll.observe(fader);
             });
 
-            // Añadir efecto de desvanecimiento inicial al cargar la página
-            document.body.classList.add('fade-out');
-            setTimeout(() => {
-                document.body.classList.add('fade-in');
-                document.body.classList.remove('fade-out');
-            }, 100);
         });
     </script>
 </body>

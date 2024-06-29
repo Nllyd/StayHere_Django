@@ -28,7 +28,8 @@ class Usuario(AbstractUser):
     nombre = models.CharField(max_length=100)
     telefono = models.CharField(max_length=15)
     edad = models.IntegerField()
-    
+    foto_perfil = models.ImageField(upload_to='perfiles/', null=True, blank=True)  # Subcarpeta perfiles
+
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'

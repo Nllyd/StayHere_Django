@@ -9,6 +9,180 @@
     <link rel="stylesheet" href="{% static 'myapp/css/landing.css' %}">
     <link rel="stylesheet" href="{% static 'myapp/css/myfonts.css' %}">
 </head>
+
+<style>
+/* landing.css */
+header {
+    background-color: #2f4a50;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    width: 15%;
+    height: auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #d8d4dc;
+}
+
+.color-box {
+    background-color: #50747c;
+    padding: 0px;
+    position: relative;
+}
+
+.color-box,
+.row {
+    overflow-x: hidden;
+}
+
+.reduced-size {
+    margin-top: 90px;
+    margin-left: 20px;
+    max-width: 70%;
+    height: auto;
+}
+
+.color-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, #50747c, transparent);
+    pointer-events: none;
+}
+
+.col {
+    position: relative;
+}
+
+.centered-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-img img {
+    margin-top: 50px;
+    object-fit: fill;
+}
+
+.btn-custom {
+    background-color: #AA2C1D;
+    border-radius: 20px;
+    border: none;
+    padding: 20px 30px;
+    transition: background-color 0.3s ease;
+    max-width: 15%;
+    margin-top: 90px;
+}
+
+.btn-custom img {
+    max-width: 100%;
+}
+
+.btn-custom:hover {
+    background-color: #819b32;
+}
+
+footer {
+    background-color: #2f4a50;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: 100px;
+}
+
+/* Styles for sidebar */
+.sidebar {
+    margin-top: 10px;
+    height: 500px;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.menu-toggle {
+    margin-top: 30px;
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    font-size: 30px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.sidebar ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+}
+
+#close-button {
+    color: white; /* Color blanco para el ícono */
+    background: none; /* Eliminar fondo */
+    font-size: 30px; /* Tamaño del ícono */
+    border: none; /* Sin bordes */
+    position: absolute;
+    left: 10px; /* Alineación a la izquierda dentro del sidebar */
+    top: 10px; /* Ajustar la posición vertical */
+}
+
+/* Efecto de desvanecimiento */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-out {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.fade-out.hidden {
+    opacity: 0;
+}
+</style>
+
 <body class="fade-out">
 
     <!-- Header -->
@@ -22,6 +196,7 @@
         <button class="close-btn" id="close-button">&times;</button> <!-- Botón cerrar -->
         <ul>
             {% if user.is_authenticated %}
+                <li><a href="{% url 'user' %}" class="semilight" style="font-size: 14px; text-align: left;">Mi perfil</a></li> <!-- Nuevo enlace -->
                 <li><a href="{% url 'nuevo' %}" class="semilight" style="font-size: 14px; text-align: left;">Ofrecer Habitaciones</a></li>
                 <li><a href="{% url 'home' %}" class="semilight" style="font-size: 14px; text-align: left;">Buscar Habitacion</a></li>
                 <li><a href="{% url 'logout' %}" class="semilight" style="font-size: 14px; text-align: left;">Cerrar Sesion</a></li>
@@ -48,7 +223,7 @@
             <!-- Imagen -->
             <div class="col-md-6">
                 <div class="col position-relative">
-                    <img id="students-image" src="{% static 'myapp/images/Imagenes StayHere/EstudiantesTecsup.png' %}" alt="">
+                    <img id="students-image" src="{% static 'myapp/images/Imagenes StayHere/EstudiantesTecsup.png' %}" alt="" style="height: 50%;">
                     <div class="color-overlay"></div>
                 </div>
             </div>

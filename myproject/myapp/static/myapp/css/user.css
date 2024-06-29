@@ -41,18 +41,6 @@
         left: calc(100px);
     }
 
-    .circle {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        background-color: #ffcc00;
-        position: absolute;
-        left: calc(-100px - 150px);
-        top: calc(50% - 100px);
-        z-index: -1;
-        background-size: cover;
-        background-position: center;
-    }
 
     #upload-button {
         position: absolute;
@@ -111,7 +99,7 @@
     }
 
     .opinion-text {
-        font-size: 16px;
+        font-size: 10px;
         margin-right: 10px;
         display: inline;
         margin: 0;

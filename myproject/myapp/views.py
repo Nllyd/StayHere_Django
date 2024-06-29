@@ -7,7 +7,6 @@ from django.views import View
 from .models import Usuario, Alojamiento, ImagenAlojamiento
 from django.db import IntegrityError
 
-
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -40,10 +39,6 @@ def login_view(request):
             return render(request, 'myapp/login.html', {'error': 'Correo o contraseña incorrectos'})
     return render(request, 'myapp/login.html')
 
-import logging
-
-logger = logging.getLogger(__name__)
-
 @login_required
 def nuevo_view(request):
     if request.method == 'POST':
@@ -55,9 +50,6 @@ def nuevo_view(request):
         caracteristicas = request.POST.getlist('caracteristicas')
         imagenes = request.FILES.getlist('imagenes')
 
-        logger.info(f"Datos recibidos: {nombre}, {descripcion}, {precio}, {latitud}, {longitud}, {caracteristicas}")
-
-        # Validar que latitud y longitud no estén vacíos
         if not latitud or not longitud:
             messages.error(request, 'Por favor, selecciona una ubicación en el mapa.')
             return render(request, 'myapp/nuevo.html')
@@ -82,9 +74,6 @@ def nuevo_view(request):
     return render(request, 'myapp/nuevo.html')
 
 @login_required
-def pruebas_view(request):
-    return render(request, 'myapp/pruebas.html')
-
 def register_view(request):
     if request.method == 'POST':
         nombre = request.POST['nombre']
@@ -107,7 +96,19 @@ def register_view(request):
 
 @login_required
 def user_view(request):
-    return render(request, 'myapp/user.html')
+    usuario = request.user
+    if request.method == 'POST':
+        usuario.nombre = request.POST['nombre']
+        usuario.telefono = request.POST['telefono']
+        usuario.edad = request.POST['edad']
+        
+        if 'foto_perfil' in request.FILES:
+            usuario.foto_perfil = request.FILES['foto_perfil']
+        
+        usuario.save()
+        return redirect('user')
+
+    return render(request, 'myapp/user.html', {'usuario': usuario})
 
 class HabitacionesView(LoginRequiredMixin, View):
     login_url = '/login/'

@@ -24,6 +24,7 @@
         <button class="close-btn" id="close-button">&times;</button> <!-- Botón cerrar -->
         <ul>
             {% if user.is_authenticated %}
+                <li><a href="{% url 'user' %}" class="semilight" style="font-size: 14px; text-align: left;">Mi perfil</a></li> <!-- Nuevo enlace -->
                 <li><a href="{% url 'nuevo' %}" class="semilight" style="font-size: 14px; text-align: left;">Ofrecer Habitaciones</a></li>
                 <li><a href="{% url 'home' %}" class="semilight" style="font-size: 14px; text-align: left;">Buscar Habitacion</a></li>
                 <li><a href="{% url 'logout' %}" class="semilight" style="font-size: 14px; text-align: left;">Cerrar Sesion</a></li>
