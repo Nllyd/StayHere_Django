@@ -8,6 +8,22 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
     <link rel="stylesheet" href="{% static 'myapp/css/myfonts.css' %}">
+    <style>
+        .characteristic-bubble {
+            display: inline-block;
+            background-color: #e0f7fa;
+            color: #00796b;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 2px;
+            font-size: 12px;
+        }   
+        .no-results {
+            text-align: center;
+            font-size: 30px;
+            color: #b93e05;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -38,28 +54,61 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-2" id="PrimerColumna">
-                <p style="margin-top: 20px;font-size: 18px;color: #608d96;" class="semilight" ><strong>Tipo de habitaciones</strong></p>
+                <p style="margin-top: 20px;font-size: 18px;color: #608d96;" class="semilight"><strong>Tipo de habitaciones</strong></p>
 
                 <!-- Categorias -->
                 <p><strong class="light" style="font-size: 13px; color: #4c7077;margin-top: 20px;">Categorías</strong></p>
-                <div class="checkbox-group">
+                <div class="checkbox-group" style="margin-top: 10px;">
                     <input type="checkbox" id="Habitación Personal" name="Habitación Personal" class="filtro">
                     <label for="Habitación Personal">Habitación Personal</label>
                 </div>
-                <div class="checkbox-group">
+                <div class="checkbox-group" style="margin-top: 10px;">
                     <input type="checkbox" id="Habitación Doble" name="Habitación Doble" class="filtro">
                     <label for="Habitación Doble">Habitación Doble</label>
                 </div>
 
                 <!-- Condiciones -->
                 <p><strong class="light" style="font-size: 13px;color: #4c7077;margin-top: 20px;">Condiciones</strong></p>
-                <div class="checkbox-group">
+                <div class="checkbox-group" style="margin-top: 10px;">
                     <input type="checkbox" id="Petfriendly" name="Petfriendly" class="filtro">
                     <label for="Petfriendly">Petfriendly</label>
                 </div>
-                <div class="checkbox-group">
+                <div class="checkbox-group" style="margin-top: 10px;">
                     <input type="checkbox" id="Baño Propio" name="Baño Propio" class="filtro">
                     <label for="Baño Propio">Baño Propio</label>
+                </div>
+
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <input type="checkbox" id="Wi-Fi" name="Wi-Fi" class="filtro">
+                    <label for="Wi-Fi">Wi-Fi</label>
+                </div>
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <input type="checkbox" id="Estacionamiento" name="Estacionamiento" class="filtro">
+                    <label for="Estacionamiento">Estacionamiento</label>
+                </div>
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <input type="checkbox" id="Espacio de Cocina" name="Espacio de Cocina" class="filtro">
+                    <label for="Espacio de Cocina">Espacio de Cocina</label>
+                </div>
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <input type="checkbox" id="Agua caliente" name="Agua caliente" class="filtro">
+                    <label for="Agua caliente">Agua caliente</label>
+                </div>
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <input type="checkbox" id="Amueblado" name="Amueblado" class="filtro">
+                    <label for="Amueblado">Amueblado</label>
+                </div>
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <input type="checkbox" id="Zonas Comunes" name="Zonas Comunes" class="filtro">
+                    <label for="Zonas Comunes">Zonas Comunes</label>
+                </div>
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <input type="checkbox" id="Tendedero" name="Tendedero" class="filtro">
+                    <label for="Tendedero">Tendedero</label>
+                </div>
+                <div class="checkbox-group" style="margin-top: 10px;">
+                    <input type="checkbox" id="Restaurante" name="Restaurante" class="filtro">
+                    <label for="Restaurante">Restaurante</label>
                 </div>
 
                 <!-- Precios -->
@@ -83,7 +132,11 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="button-addon2" style="margin-top: 30px;">
                 </div>
+
+                <div id="no-results" class="no-results light" style="display: none;"><img src="/myproject/myapp/static/myapp/images/Imagenes StayHere/PandaRojo.png" style="max-height: 200px;max-width: 200px;margin-top: 200px;margin-bottom: 20px;" alt=""> <br>
+                    No hay un alojamiento con esas características, aun...</div>
                 
+
                 <div id="cards-container" class="row">
                     {% for alojamiento in alojamientos %}
                     <div class="col-md-4 col-6 fade-in">
@@ -168,6 +221,8 @@
                 var minPrecio = parseFloat($("#minPriceRange").val());
                 var maxPrecio = parseFloat($("#maxPriceRange").val());
 
+                var hayResultados = false;
+
                 $("#cards-container .card").each(function(){
                     var card = $(this);
                     var textoCard = card.text().toLowerCase();
@@ -195,10 +250,17 @@
                     // Mostrar u ocultar el card según los filtros y búsqueda
                     if (mostrarCard) {
                         card.closest(".col-md-4").show();
+                        hayResultados = true;
                     } else {
                         card.closest(".col-md-4").hide();
                     }
                 });
+
+                if (hayResultados) {
+                    $("#no-results").hide();
+                } else {
+                    $("#no-results").show();
+                }
             }
 
             // Añadir efecto de desvanecimiento al hacer scroll

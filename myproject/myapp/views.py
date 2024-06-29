@@ -97,6 +97,8 @@ def register_view(request):
 @login_required
 def user_view(request):
     usuario = request.user
+    alojamientos = Alojamiento.objects.filter(usuario=usuario)
+    
     if request.method == 'POST':
         usuario.nombre = request.POST['nombre']
         usuario.telefono = request.POST['telefono']
@@ -108,7 +110,8 @@ def user_view(request):
         usuario.save()
         return redirect('user')
 
-    return render(request, 'myapp/user.html', {'usuario': usuario})
+    return render(request, 'myapp/user.html', {'usuario': usuario, 'alojamientos': alojamientos})
+
 
 class HabitacionesView(LoginRequiredMixin, View):
     login_url = '/login/'
