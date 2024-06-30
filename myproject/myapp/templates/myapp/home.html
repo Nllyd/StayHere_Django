@@ -8,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'myapp/css/home.css' %}">
     <link rel="stylesheet" href="{% static 'myapp/css/myfonts.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <style>
         .characteristic-bubble {
             display: inline-block;
@@ -17,11 +18,34 @@
             border-radius: 15px;
             margin: 2px;
             font-size: 12px;
-        }   
+        }
         .no-results {
             text-align: center;
             font-size: 30px;
             color: #b93e05;
+        }
+        .nav-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            gap: 20px;
+        }
+        .nav-icons a {
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-icons a i {
+            font-size: 24px;
+        }
+        #mapa {
+            width: calc(100% - 40px);
+            height: 600px;
+            margin: 20px;
         }
     </style>
 </head>
@@ -31,6 +55,16 @@
         <img id="header-image" src="{% static 'myapp/images/StayPandaHere.png' %}" alt="Logo">
         <button class="menu-toggle">&#9776;</button> <!-- Ícono de menú -->
     </header>
+
+    <!-- Navigation Icons -->
+    <div class="nav-icons">
+        <a href="{% url 'home' %}">
+            <i class="bi bi-house-door"></i> Home
+        </a>
+        <a href="#map-section" id="map-link">
+            <i class="bi bi-geo-alt"></i> Mapa
+        </a>
+    </div>
 
     <!-- Sidebar -->
     <div id="sidebar" class="sidebar">
@@ -133,7 +167,7 @@
                     <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar" aria-describedby="button-addon2" style="margin-top: 30px;">
                 </div>
 
-                <div id="no-results" class="no-results light" style="display: none;"><img src="/myproject/myapp/static/myapp/images/Imagenes StayHere/PandaRojo.png" style="max-height: 200px;max-width: 200px;margin-top: 200px;margin-bottom: 20px;" alt=""> <br>
+                <div id="no-results" class="no-results light" style="display: none;"><img src="{% static 'myapp/images/Imagenes StayHere/PandaRojo.png' %}" style="max-height: 200px;max-width: 200px;margin-top: 200px;margin-bottom: 20px;" alt=""> <br>
                     No hay un alojamiento con esas características, aun...</div>
                 
 
@@ -165,6 +199,11 @@
                     </div>
                     {% endfor %}
                 </div> <!-- Contenedor para los cards -->
+
+                <!-- Sección del mapa -->
+                <div id="map-section" style="display: none;">
+                    <div id="mapa"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -175,6 +214,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=initMap" async defer></script>
     <script>
         // Boton de menu
         document.querySelector('.menu-toggle').addEventListener('click', function() {
@@ -195,6 +235,35 @@
         }
 
         $(document).ready(function(){
+            // Desplazamiento y cambio de contenido al hacer clic en el enlace del mapa
+            $("#map-link").click(function(e){
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $("#map-section").offset().top
+                }, 500);
+
+                $("#cards-container").hide();
+                $("#map-section").show();
+
+                // Inicializar el mapa con Google Maps y añadir los marcadores
+                var map = new google.maps.Map(document.getElementById('mapa'), {
+                    zoom: 18,
+                    center: {lat: -12.043954147829243, lng: -76.95126047028485}
+                });
+
+                var coordenadas = {{ coordenadas|safe }};
+                coordenadas.forEach(function(coord) {
+                    var marker = new google.maps.Marker({
+                        position: {lat: coord.latitud, lng: coord.longitud},
+                        map: map,
+                        title: coord.nombre
+                    });
+                    marker.addListener('click', function() {
+                        window.location.href = '/alojamiento/' + coord.id;
+                    });
+                });
+            });
+
             filtrarTabla(); // Llama a la función filtrarTabla al cargar la página
 
             $(".filtro").change(function(){

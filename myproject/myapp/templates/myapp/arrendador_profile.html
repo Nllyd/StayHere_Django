@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Usuario</title>
+    <title>Perfil del Arrendador</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
@@ -27,17 +27,6 @@
         .circle img {
             width: 100%;
             height: auto;
-        }
-        .edit-button {
-            display: block;
-            margin: 20px auto 0;
-            padding: 10px 20px;
-            height: 30%;
-            background-color: #21614c;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
         .profile-info p {
             font-size: 12px;
@@ -101,7 +90,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <!-- Header -->
@@ -139,12 +127,11 @@
             {% endif %}
         </div>
         <div style="margin-right: 150px;">
-            <p style="font-weight: bold;font-size: 18px;margin-top: 20px;">Nombre: {{ usuario.nombre }}</p>
-            <p style="font-size: 16px;margin-top: 20px;">Edad: {{ usuario.edad }} Años</p>
-            <p style="font-size: 16px;margin-top: 20px;">Numero: {{ usuario.telefono }}</p>
+            <p style="font-weight: bold; font-size: 18px; margin-top: 20px;">Nombre: {{ usuario.nombre }}</p>
+            <p style="font-size: 16px; margin-top: 20px;">Edad: {{ usuario.edad }} Años</p>
+            <p style="font-size: 16px; margin-top: 20px;">Numero: {{ usuario.telefono }}</p>
         </div>
-        <div >
-            <button class="edit-button" data-bs-toggle="modal" data-bs-target="#editProfileModal" style="margin-top: 30px;">Editar perfil</button>
+        <div>
             {% if usuario.mostrar_whatsapp %}
                 <a href="https://wa.me/{{ usuario.telefono }}?text=Quisiera%20saber%20mas%20sobre%20este%20alojamiento🏠" class="whatsapp-button">
                     <i class="bi bi-whatsapp"></i> Contactar
@@ -153,54 +140,7 @@
         </div>
     </div>
 
-    <!-- Modal para editar perfil -->
-    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileModalLabel">Editar perfil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" value="{{ usuario.nombre }}" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="edad" class="form-label">Edad</label>
-                            <input type="number" id="edad" name="edad" value="{{ usuario.edad }}" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="text" id="telefono" name="telefono" value="{{ usuario.telefono }}" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="file-upload" class="form-label">Foto de perfil</label>
-                            <input type="file" id="file-upload" name="foto_perfil" class="form-control d-none" onchange="previewImage(event)">
-                            <button type="button" class="btn btn-primary" onclick="document.getElementById('file-upload').click()">Subir imagen</button>
-                            <div class="mt-3">
-                                <img id="image-preview" src="" alt="Vista previa de la imagen" style="width: 100px; height: auto;">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="mostrar_whatsapp" name="mostrar_whatsapp" {% if usuario.mostrar_whatsapp %}checked{% endif %}>
-                                <label class="form-check-label" for="mostrar_whatsapp">Mostrar botón de WhatsApp</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <h4 style="margin-left: 42%;margin-top: 30px;margin-bottom: -50px;">Alojamientos Publicados</h4>
+    <h4 style="margin-left: 42%; margin-top: 30px; margin-bottom: -50px;">Alojamientos Publicados</h4>
     <!-- Contenedor de alojamientos -->
     <div class="slider-container">
         {% if alojamientos %}
@@ -250,24 +190,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
         $(document).ready(function(){
-            // Evento para el botón de actualizar foto
-            $('#update-button').click(function() {
-                $('#file-upload').click();
-            });
-
-            // Evento para actualizar la imagen al seleccionar un archivo
-            $('#file-upload').change(function() {
-                const file = this.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        $('#circle img').attr('src', e.target.result);
-                        $('#image-preview').attr('src', e.target.result);
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
-
             // Inicializar Slick Carousel
             $('.slider').slick({
                 infinite: true,
@@ -279,18 +201,6 @@
                 autoplaySpeed: 2000,
             });
         });
-
-        // Función para previsualizar la imagen en el modal
-        function previewImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('image-preview').src = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        }
 
         // Boton de menu
         document.querySelector('.menu-toggle').addEventListener('click', function() {

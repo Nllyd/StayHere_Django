@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Habitaciones</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"/>
@@ -145,6 +145,16 @@
                         <p><strong style="font-size: 17px; color: #fafafa;margin-top: 20px;">Nombre: {{ alojamiento.usuario.nombre }}</strong></p>
                         <p><strong style="font-size: 17px; color: #fafafa;margin-top: 20px;">Edad: {{ alojamiento.usuario.edad }}</strong></p>
                         <p><strong style="font-size: 17px; color: #fafafa;margin-top: 20px;">Numero: {{ alojamiento.usuario.telefono }}</strong></p>
+                    </div>
+                    <div class="col">
+                        <div class="col">
+                            <a href="{% url 'arrendador_profile' alojamiento.usuario.id %}" class="btn btn-primary">Ver perfil</a>
+                            {% if alojamiento.usuario.mostrar_whatsapp %}
+                                <a href="https://wa.me/{{ alojamiento.usuario.telefono }}?text=Quisiera%20saber%20mas%20sobre%20este%20alojamiento🏠" class="btn btn-success">
+                                    <i class="bi bi-whatsapp"></i> Contactar
+                                </a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

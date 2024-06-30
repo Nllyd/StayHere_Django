@@ -19,7 +19,8 @@ def alert_view(request):
 
 def home_view(request):
     alojamientos = Alojamiento.objects.all()
-    return render(request, 'myapp/home.html', {'alojamientos': alojamientos})
+    coordenadas = [{'latitud': a.latitud, 'longitud': a.longitud, 'nombre': a.nombre, 'id': a.id} for a in alojamientos]
+    return render(request, 'myapp/home.html', {'alojamientos': alojamientos, 'coordenadas': coordenadas})
 
 @login_required
 def alojamiento_detalle_view(request, alojamiento_id):
@@ -103,6 +104,7 @@ def user_view(request):
         usuario.nombre = request.POST['nombre']
         usuario.telefono = request.POST['telefono']
         usuario.edad = request.POST['edad']
+        usuario.mostrar_whatsapp = 'mostrar_whatsapp' in request.POST
         
         if 'foto_perfil' in request.FILES:
             usuario.foto_perfil = request.FILES['foto_perfil']
@@ -112,6 +114,11 @@ def user_view(request):
 
     return render(request, 'myapp/user.html', {'usuario': usuario, 'alojamientos': alojamientos})
 
+@login_required
+def user_profile_view(request, id):
+    usuario = get_object_or_404(Usuario, id=id)
+    alojamientos = Alojamiento.objects.filter(usuario=usuario)
+    return render(request, 'myapp/user_profile.html', {'usuario': usuario, 'alojamientos': alojamientos})
 
 class HabitacionesView(LoginRequiredMixin, View):
     login_url = '/login/'
@@ -119,3 +126,10 @@ class HabitacionesView(LoginRequiredMixin, View):
     def get(self, request):
         alojamientos = Alojamiento.objects.all()
         return render(request, 'myapp/habitaciones.html', {'alojamientos': alojamientos})
+    
+@login_required
+def arrendador_profile_view(request, id):
+    usuario = get_object_or_404(Usuario, id=id)
+    alojamientos = Alojamiento.objects.filter(usuario=usuario)
+    return render(request, 'myapp/arrendador_profile.html', {'usuario': usuario, 'alojamientos': alojamientos})
+

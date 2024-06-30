@@ -28,7 +28,8 @@ class Usuario(AbstractUser):
     nombre = models.CharField(max_length=100)
     telefono = models.CharField(max_length=15)
     edad = models.IntegerField()
-    foto_perfil = models.ImageField(upload_to='perfiles/', null=True, blank=True)  # Subcarpeta perfiles
+    foto_perfil = models.ImageField(upload_to='perfiles/', null=True, blank=True)
+    mostrar_whatsapp = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
@@ -46,7 +47,7 @@ class Usuario(AbstractUser):
 
     def __str__(self):
         return self.email
-    
+
 
 class Alojamiento(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
