@@ -57,7 +57,7 @@ p {
 }
 
 .card {
-    width: 370px;
+    width: 350px;
     height: 560px;
     background-color: #ffffff;
     border-radius: 15px;
@@ -70,7 +70,7 @@ p {
 
 .photo {
     width: 100%;
-    height: 250px;
+    height: 50%;
     background-color: #f0f0f0;
     border-radius: 10px;
     background-size: cover;
@@ -151,9 +151,9 @@ footer {
 
 #PrimerColumna {
     border-radius: 20px;
-    background-color: #242323;
+    background-color: #EAEAEA;
     margin: 10px;
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -227,4 +227,42 @@ footer {
     background: #9acd32;
     cursor: pointer;
     border-radius: 50%;
+}
+
+.characteristic-bubble {
+    display: inline-block;
+    background-color: #e0f7fa;
+    color: #00796b;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin: 2px;
+    font-size: 12px;
+}
+.no-results {
+    text-align: center;
+    font-size: 30px;
+    color: #b93e05;
+}
+.nav-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 20px;
+}
+.nav-icons a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.nav-icons a i {
+    font-size: 24px;
+}
+#mapa {
+    width: calc(100% - 40px);
+    height: 600px;
+    margin: 20px;
 }

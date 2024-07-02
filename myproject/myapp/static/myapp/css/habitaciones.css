@@ -65,17 +65,17 @@ footer {
 
 /* Sección del arrendador y del alojamiento */
 .arrendador-section {
-    background-color: #333; /* Fondo gris oscuro */
+    background-color: #EAEAEA; /* Fondo gris oscuro */
     padding-top: 20px;
     border-radius: 10px; /* Bordes redondeados */
-    color: white; /* Color del texto en blanco */
+    color: rgb(24, 24, 24); /* Color del texto en blanco */
     margin-bottom: 20px; /* Espaciado inferior para separar del siguiente contenido */
 }
 
 .alojamiento-section {
-    background-color: #333; /* Fondo gris oscuro */
+    background-color: #EAEAEA; /* Fondo gris oscuro */
     border-radius: 10px; /* Bordes redondeados */
-    color: white; /* Color del texto en blanco */
+    color: rgb(24, 24, 24); /* Color del texto en blanco */
     margin-bottom: 20px; /* Espaciado inferior para separar del siguiente contenido */
     padding: 20px;
     width: 1200px;
@@ -83,7 +83,7 @@ footer {
 }
 
 .arrendador-section p {
-    color: white; /* Color del texto en blanco */
+    color: rgb(24, 24, 24); /* Color del texto en blanco */
 }
 
 .arrendador-title {
@@ -92,7 +92,7 @@ footer {
 
 .map-container {
     width: 100%;
-    height: 500px; /* Ajusta la altura del mapa según lo necesites */
+    height: 305px; /* Ajusta la altura del mapa según lo necesites */
     border-radius: 20px; /* Bordes redondeados */
     overflow: hidden; /* Oculta cualquier contenido que se desborde */
 }
@@ -115,7 +115,7 @@ footer {
     height: 300px;
     object-fit: cover;
     margin-right: 10px; /* Agrega un margen derecho de 20px entre las imágenes */
-    background-color: #ccc;
+    background-color: rgb(24, 24, 24);
     cursor: grab;
 }
 

@@ -133,7 +133,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col-auto">
-                        <div class="circle">
+                        <div class="circle" style="margin-left: 30px;margin-right: 30px;">
                             {% if alojamiento.usuario.foto_perfil %}
                                 <img src="{{ alojamiento.usuario.foto_perfil.url }}" alt="Foto de perfil">
                             {% else %}
@@ -142,13 +142,13 @@
                         </div>
                     </div>
                     <div class="col info">
-                        <p><strong style="font-size: 17px; color: #fafafa;margin-top: 20px;">Nombre: {{ alojamiento.usuario.nombre }}</strong></p>
-                        <p><strong style="font-size: 17px; color: #fafafa;margin-top: 20px;">Edad: {{ alojamiento.usuario.edad }}</strong></p>
-                        <p><strong style="font-size: 17px; color: #fafafa;margin-top: 20px;">Numero: {{ alojamiento.usuario.telefono }}</strong></p>
+                        <p style="font-size: 17px; color: #242424;margin-top: 20px;"> <strong>Nombre:</strong> {{ alojamiento.usuario.nombre }}</p>
+                        <p style="font-size: 17px; color: #242424;margin-top: 20px;"> <strong>Edad: </strong>{{ alojamiento.usuario.edad }}</p>
+                        <p style="font-size: 17px; color: #242424;margin-top: 20px;"> <strong>Numero: </strong>{{ alojamiento.usuario.telefono }}</p>
                     </div>
                     <div class="col">
-                        <div class="col">
-                            <a href="{% url 'arrendador_profile' alojamiento.usuario.id %}" class="btn btn-primary">Ver perfil</a>
+                        <div class="col" style="text-align: end;margin-right: 30px;">
+                            <a href="{% url 'arrendador_profile' alojamiento.usuario.id %}" class="btn" style="background-color: rgb(45, 90, 92); color: whitesmoke;">Ver perfil</a>
                             {% if alojamiento.usuario.mostrar_whatsapp %}
                                 <a href="https://wa.me/{{ alojamiento.usuario.telefono }}?text=Quisiera%20saber%20mas%20sobre%20este%20alojamiento🏠" class="btn btn-success">
                                     <i class="bi bi-whatsapp"></i> Contactar
@@ -166,15 +166,15 @@
             <p class="semilight" style=" color: #d19a67;margin-top: 20px;">Información del Alojamiento</p>
         </div>
         <div class="alojamiento-section">
-            <div id="container" class="row">
+            <div id="container" class="row" style="margin-bottom: -30px;">
                 <div class="col">
-                    <p><strong class="light" style="font-size: 13px; color: #fafafa;margin-top: 20px;">Ubicación</strong></p>
+                    <p><strong class="light" style="font-size: 13px; color: #242424;margin-top: 20px;">Ubicación</strong></p>
                 </div>
                 <div class="col">
-                    <p><strong class="light" style="font-size: 13px; color: #fafafa;margin-top: 20px;">Imágenes del alojamiento</strong></p>
+                    <p><strong class="light" style="font-size: 13px; color: #242424;margin-top: 20px;">Imágenes del alojamiento</strong></p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" >
                 <div class="col-6">
                     <div class="map-container">
                         <iframe id="mapa" width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q={{ alojamiento.latitud }},{{ alojamiento.longitud }}&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
@@ -189,31 +189,33 @@
                 </div>
             </div>
 
+            <hr>
             <div id="container" class="row" style="margin-top: 30px;margin-bottom: -10px;">
                 <div class="col">
-                    <p><strong class="light" style="font-size: 13px; color: #fafafa;">Descripción</strong></p>
+                    <p><strong class="light" style="font-size: 13px; color: #242424;">Descripción</strong></p>
                 </div>
-                <div class="col">
-                    <p><strong class="light" style="font-size: 13px; color: #fafafa;">Precio</strong></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-6">
+                <div class="col-12" style="margin-bottom: 30px;">
                     <div class="rounded-bg-white">
                         {{ alojamiento.descripcion }}
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="precio-box">
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p><strong class="light" style="font-size: 13px; color: #242424;">Precio</strong></p>
+                </div>
+                <div class="col-12" >
+                    <div class="precio-box" >
                         <p>S/. {{ alojamiento.precio }}</p>
                     </div>
                 </div>
             </div>
 
+            <hr>
             <div id="container" class="row" style="margin-top: 30px;margin-bottom: -10px;">
                 <div class="col">
-                    <p><strong class="light" style="font-size: 13px; color: #fafafa;">Detalles</strong></p>
+                    <p><strong class="light" style="font-size: 13px; color: #242424;">Detalles</strong></p>
                 </div>
             </div>
 
@@ -227,7 +229,7 @@
                 </div>
             </div>
         </div>
-        <hr>
+
     </div>
     <!-- "Footer"-->
     <footer>
